@@ -16,7 +16,7 @@ public class ChatBotWebSocket {
 
     @OnTextMessage
     public Multi<String> onMessage(String message) {
-        return bot.chat(message);
+        return bot.chat(message).onFailure().recoverWithItem(Throwable::getMessage);
     }
 
 }
